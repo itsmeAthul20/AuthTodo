@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import auth from '../Config';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import './Login.module.css'; 
+import auth from '../Config';
+import styles from './Login.module.css'; // Import the CSS module
 
 const Signup = () => {
     const [user, setUser] = useState('');
@@ -11,7 +11,7 @@ const Signup = () => {
     const navigate = useNavigate();
 
     const signupfunc = (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
         createUserWithEmailAndPassword(auth, user, pass)
             .then(() => {
                 console.log("registered");
@@ -21,8 +21,8 @@ const Signup = () => {
     };
 
     return (
-        <div className="login-container">
-            <div className="Login">
+        <div className={styles['login-container']}>
+            <div className={styles.Login}>
                 <h2>Sign Up</h2>
                 <form onSubmit={signupfunc}>
                     <input
@@ -38,7 +38,7 @@ const Signup = () => {
                     />
                     <button type="submit">Sign Up</button>
                 </form>
-                <p className="bottom">Already have an account? <Link className="link1" to="/">Login</Link></p>
+                <p className={styles.bottom}>Already have an account? <Link className={styles.link1} to="/">Login</Link></p>
             </div>
         </div>
     );
